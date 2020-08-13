@@ -1,0 +1,35 @@
+{
+  "name": "practical_nlp",
+  "version": "1.0.0",
+  "description": "A quick overview of Natural Language Processing using Python",
+  "main": "index.js",
+  "repository": "https://github.com/ma0c/practical_nlp",
+  "author": "Mauricio Collazos <ma0@contraslash.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "webpack",
+    "start": "webpack-dev-server --hot --open",
+    "gh-pages": "npx gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "spectacle": "^6.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "raw-loader": "^4.0.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
