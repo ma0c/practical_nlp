@@ -17,6 +17,8 @@ import {
     Stepper
 } from "spectacle";
 
+import qr from "../static/img/qr.png"
+
 
 
 export const Slides = (props) => (
@@ -29,6 +31,14 @@ export const Slides = (props) => (
                 <Heading size={3}>
                     Mauricio Collazos
                 </Heading>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Image src={qr} />
+                <Link href="https://ma0c.github.io/practical_nlp/.">
+                    <Text color="secondary">ma0c.github.io/practical_nlp/</Text>
+                </Link>
             </FlexBox>
         </Slide>
         <Slide>
