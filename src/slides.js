@@ -42,6 +42,7 @@ const POSTags = `| Number | Tag  | Description                              | Nu
 | 18.    | PRP  | Personal pronoun                         | 36.    | WRB  | Wh-adverb                             |`;
 
 
+const phrase = "I love Ice Cream. I also like steak";
 
 const tokenization = `I love Ice Cream. I also like steak
 
@@ -103,11 +104,56 @@ export const Slides = (props) => (
                 <Heading size="2" >
                     Communication in nature
                 </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif"/>
+                        <Link href="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif">
+                            <Text color="secondary">https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif</Text>
+                        </Link>
+                    </FlexBox>
+                </Appear>
+            </FlexBox>
+        </Slide>
+
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center" justifyContent="center">
+                <Heading size="2" >
+                    Communication in nature
+                </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif"/>
+                        <Link href="https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif">
+                            <Text color="secondary">https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif</Text>
+                        </Link>
+                    </FlexBox>
+                </Appear>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center" justifyContent="center">
+                <Heading size="2" >
+                    Communication in nature
+                </Heading>
 
                         <Image src="https://www.medindia.net/health-images/chimpanzee1.jpg"/>
                         <Link href="https://people.howstuffworks.com/swearing4.htm">
                             <Text color="secondary">https://people.howstuffworks.com/swearing4.htm</Text>
                         </Link>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    What is language?
+                </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Text>
+                            An structured system of communication
+                        </Text>
+                    </FlexBox>
+                </Appear>
             </FlexBox>
         </Slide>
         <Slide>
@@ -128,15 +174,17 @@ export const Slides = (props) => (
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
-                    What is language?
+                    Understanding words
                 </Heading>
-                <Appear elementNum={0} justifyContent="center">
-                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
-                        <Text>
-                            An structured system of communication
-                        </Text>
-                    </FlexBox>
-                </Appear>
+
+                <Appear elementNum={0}><Text>Subjects(Noun)</Text></Appear>
+                <Appear elementNum={1}><Text>Actions(Verbs)</Text></Appear>
+                <Appear elementNum={2}><Text>Qualify(Adjectoves)</Text></Appear>
+                <Appear elementNum={3}><Text>...</Text></Appear>
+                <Appear elementNum={4}><Text>Adverbs</Text></Appear>
+                <Appear elementNum={5}><Text>Prepositions</Text></Appear>
+                <Appear elementNum={6}><Text>Conjunctions</Text></Appear>
+                <Appear elementNum={7}><Text>Determinants</Text></Appear>
             </FlexBox>
         </Slide>
         <Slide>
@@ -166,14 +214,35 @@ export const Slides = (props) => (
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
-                    What about verbs?
+                    Categorizing words
+                </Heading>
+                <pre>
+                    {POSTTagging}
+                </pre>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    Understanding words
+                </Heading>
+                <Appear elementNum={0}>
+
+                </Appear>
+            </FlexBox>
+        </Slide>
+
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    Who is who?
                 </Heading>
             </FlexBox>
         </Slide>
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
-                    Who is who?
+                    What about verbs?
                 </Heading>
             </FlexBox>
         </Slide>
