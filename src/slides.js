@@ -179,12 +179,13 @@ export const Slides = (props) => (
 
                 <Appear elementNum={0}><Text>Subjects(Noun)</Text></Appear>
                 <Appear elementNum={1}><Text>Actions(Verbs)</Text></Appear>
-                <Appear elementNum={2}><Text>Qualify(Adjectoves)</Text></Appear>
+                <Appear elementNum={2}><Text>Qualify(Adjectives)</Text></Appear>
                 <Appear elementNum={3}><Text>...</Text></Appear>
-                <Appear elementNum={4}><Text>Adverbs</Text></Appear>
-                <Appear elementNum={5}><Text>Prepositions</Text></Appear>
-                <Appear elementNum={6}><Text>Conjunctions</Text></Appear>
-                <Appear elementNum={7}><Text>Determinants</Text></Appear>
+                <Appear elementNum={4}><Text>Pronouns(Adjectives)</Text></Appear>
+                <Appear elementNum={5}><Text>Adverbs</Text></Appear>
+                <Appear elementNum={6}><Text>Prepositions</Text></Appear>
+                <Appear elementNum={7}><Text>Conjunctions</Text></Appear>
+                <Appear elementNum={8}><Text>Determinants</Text></Appear>
             </FlexBox>
         </Slide>
         <Slide>
