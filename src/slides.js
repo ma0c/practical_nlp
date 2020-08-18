@@ -88,9 +88,9 @@ export const Slides = (props) => (
                 <Appear elementNum={0} justifyContent="center">
                     <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
                         <Image src="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif"/>
-                        <Link href="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif">
-                            <Text color="secondary">https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif</Text>
-                        </Link>
+                        {/*<Link href="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif">*/}
+                        {/*    <Text color="secondary">https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif</Text>*/}
+                        {/*</Link>*/}
                     </FlexBox>
                 </Appear>
             </FlexBox>
@@ -102,10 +102,10 @@ export const Slides = (props) => (
                 </Heading>
                 <Appear elementNum={0} justifyContent="center">
                     <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
-                        <Image src="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif"/>
-                        <Link href="https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif">
-                            <Text color="secondary">https://media.giphy.com/media/a9EJq6MtJx5YY/giphy.gif</Text>
-                        </Link>
+                        <Image src="https://media.giphy.com/media/ehae6ceAiGIFwnhWtV/giphy.gif"/>
+                        {/*<Link href="https://media.giphy.com/media/ehae6ceAiGIFwnhWtV/giphy.gif">*/}
+                        {/*    <Text color="secondary">https://media.giphy.com/media/ehae6ceAiGIFwnhWtV/giphy.gif</Text>*/}
+                        {/*</Link>*/}
                     </FlexBox>
                 </Appear>
             </FlexBox>
@@ -119,9 +119,9 @@ export const Slides = (props) => (
                 <Appear elementNum={0} justifyContent="center">
                     <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
                         <Image src="https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif"/>
-                        <Link href="https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif">
-                            <Text color="secondary">https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif</Text>
-                        </Link>
+                        {/*<Link href="https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif">*/}
+                        {/*    <Text color="secondary">https://media.giphy.com/media/kMdlyJ74u9khW/giphy.gif</Text>*/}
+                        {/*</Link>*/}
                     </FlexBox>
                 </Appear>
             </FlexBox>
@@ -163,6 +163,36 @@ export const Slides = (props) => (
                         <Link href="https://en.wikipedia.org/wiki/Cuneiform">
                             <Text color="secondary">https://en.wikipedia.org/wiki/Cuneiform</Text>
                         </Link>
+                    </FlexBox>
+                </Appear>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    How language works?
+                </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Hieroglyphs_from_the_tomb_of_Seti_I.jpg" width={400} />
+                        <Link href="https://en.wikipedia.org/wiki/Egyptian_hieroglyphs">
+                            <Text color="secondary">https://en.wikipedia.org/wiki/Egyptian_hieroglyphs</Text>
+                        </Link>
+                    </FlexBox>
+                </Appear>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    How language works?
+                </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://media.giphy.com/media/11I8v5lE8uq79C/giphy.gif" width={400} />
+                        {/*<Link href="https://media.giphy.com/media/11I8v5lE8uq79C/giphy.gif">*/}
+                        {/*    <Text color="secondary">https://media.giphy.com/media/11I8v5lE8uq79C/giphy.gif</Text>*/}
+                        {/*</Link>*/}
                     </FlexBox>
                 </Appear>
             </FlexBox>
@@ -255,29 +285,20 @@ export const Slides = (props) => (
                 </Appear>
             </FlexBox>
         </Slide>
-        <Slide>
-            <FlexBox height="100%" flexDirection="column" alignItems="center">
-                <Heading size="2" >
-                    Understanding words
-                </Heading>
-                <Appear elementNum={0}>
-
-                </Appear>
-            </FlexBox>
-        </Slide>
 
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
                     Who is who?
                 </Heading>
-            </FlexBox>
-        </Slide>
-        <Slide>
-            <FlexBox height="100%" flexDirection="column" alignItems="center">
-                <Heading size="2" >
-                    What about verbs?
-                </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif"/>
+                        <Link href="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
+                            <Text color="secondary">https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif</Text>
+                        </Link>
+                    </FlexBox>
+                </Appear>
             </FlexBox>
         </Slide>
         <Slide>
@@ -285,6 +306,14 @@ export const Slides = (props) => (
                 <Heading size="2" >
                     What do you want?
                 </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://media.giphy.com/media/3o7ZetIsjtbkgNE1I4/giphy.gif"/>
+                        {/*<Link href="https://media.giphy.com/media/3o7ZetIsjtbkgNE1I4/giphy.gif">*/}
+                        {/*    <Text color="secondary">https://media.giphy.com/media/3o7ZetIsjtbkgNE1I4/giphy.gif</Text>*/}
+                        {/*</Link>*/}
+                    </FlexBox>
+                </Appear>
             </FlexBox>
         </Slide>
         <Slide>
