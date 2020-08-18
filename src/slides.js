@@ -44,13 +44,9 @@ const POSTags = `| Number | Tag  | Description                              | Nu
 
 const phrase = "I love Ice Cream. I also like steak";
 
-const tokenization = `I love Ice Cream. I also like steak
+const tokenization = "|I| |love| |Ice Cream|  |I| |also| |like| |steak|";
 
-|I| |love| |Ice Cream|  |I| |also| |like| |steak|
-`;
-
-const POSTTagging = `I love Ice Cream. I also like steak
-
+const POSTTagging = `
 PRP   VBP      NNP      PRP    RB    VBP    NNP
  |     |        |        |     |      |      |
 |I| |love| |Ice Cream|  |I| |also| |like| |steak|
@@ -177,15 +173,15 @@ export const Slides = (props) => (
                     Understanding words
                 </Heading>
 
-                <Appear elementNum={0}><Text>Subjects(Noun)</Text></Appear>
-                <Appear elementNum={1}><Text>Actions(Verbs)</Text></Appear>
-                <Appear elementNum={2}><Text>Qualify(Adjectives)</Text></Appear>
-                <Appear elementNum={3}><Text>...</Text></Appear>
-                <Appear elementNum={4}><Text>Pronouns(Adjectives)</Text></Appear>
-                <Appear elementNum={5}><Text>Adverbs</Text></Appear>
-                <Appear elementNum={6}><Text>Prepositions</Text></Appear>
-                <Appear elementNum={7}><Text>Conjunctions</Text></Appear>
-                <Appear elementNum={8}><Text>Determinants</Text></Appear>
+                <Appear elementNum={0}><Text margin="0px">Subjects(Noun)</Text></Appear>
+                <Appear elementNum={1}><Text margin="0px">Actions(Verbs)</Text></Appear>
+                <Appear elementNum={2}><Text margin="0px">Qualify(Adjectives)</Text></Appear>
+                <Appear elementNum={3}><Text margin="0px">...</Text></Appear>
+                <Appear elementNum={4}><Text margin="0px">Pronouns(Adjectives)</Text></Appear>
+                <Appear elementNum={5}><Text margin="0px">Adverbs</Text></Appear>
+                <Appear elementNum={6}><Text margin="0px">Prepositions</Text></Appear>
+                <Appear elementNum={7}><Text margin="0px">Conjunctions</Text></Appear>
+                <Appear elementNum={8}><Text margin="0px">Determinants</Text></Appear>
             </FlexBox>
         </Slide>
         <Slide>
@@ -202,14 +198,39 @@ export const Slides = (props) => (
                 </Link>
             </FlexBox>
         </Slide>
+
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    Order Matters
+                </Heading>
+
+                <Appear elementNum={0}><Text margin="0px">[Sentence] -> [Noun Phrase] [Verb Phrase]</Text></Appear>
+                <Appear elementNum={1}><Text margin="0px">[Noun Phrase] -> [Article] [Noun]</Text></Appear>
+                <Appear elementNum={2}><Text margin="0px">[Noun Phrase] -> [Adjective] [Noun]</Text></Appear>
+                <Appear elementNum={3}><Text margin="0px">[Noun Phrase] -> [Noun]</Text></Appear>
+                <Appear elementNum={4}><Text margin="0px">...</Text></Appear>
+                <Appear elementNum={5}><Text margin="0px">[Verb Phrase] -> [Verb] [Noun Phrase]</Text></Appear>
+                <Appear elementNum={6}><Text margin="0px">[Verb Phrase] -> [Verb] [Prepositional Phrase Phrase]</Text></Appear>
+                <Appear elementNum={7}><Text margin="0px">[Verb Phrase] -> [Verb] [Noun Phrase] [Prepositional Phrase Phrase]</Text></Appear>
+                <Appear elementNum={8}><Text margin="0px">[Verb Phrase] -> [Verb] [Noun Phrase] [Adverb]</Text></Appear>
+            </FlexBox>
+        </Slide>
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
                     Separating words
                 </Heading>
-                <pre>
-                    {tokenization}
-                </pre>
+                <Appear elementNum={0}>
+                    <pre style={{fontSize: "2rem"}}>
+                        {phrase}
+                    </pre>
+                </Appear>
+                <Appear elementNum={1}>
+                    <pre style={{fontSize: "2rem"}}>
+                        {tokenization}
+                    </pre>
+                </Appear>
             </FlexBox>
         </Slide>
         <Slide>
@@ -217,9 +238,21 @@ export const Slides = (props) => (
                 <Heading size="2" >
                     Categorizing words
                 </Heading>
-                <pre>
-                    {POSTTagging}
-                </pre>
+                <Appear elementNum={0}>
+                    <pre style={{fontSize: "2rem"}}>
+                        {phrase}
+                    </pre>
+                </Appear>
+                <Appear elementNum={1}>
+                    <pre style={{fontSize: "2rem"}}>
+                        {tokenization}
+                    </pre>
+                </Appear>
+                <Appear elementNum={2}>
+                    <pre style={{fontSize: "2rem"}}>
+                        {POSTTagging}
+                    </pre>
+                </Appear>
             </FlexBox>
         </Slide>
         <Slide>
