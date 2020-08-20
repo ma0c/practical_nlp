@@ -6,5 +6,13 @@ phrase = "I love Ice Cream. I also like steak"
 document = nlp(phrase)
 
 for token in document:
-    print(token.text, token.lemma_, token.pos_, token.tag_, token.dep_,
-            token.shape_, token.is_alpha, token.is_stop)
+    print(
+        token.text,
+        token.lemma_,
+        token.pos_,
+        token.tag_,
+        token.dep_,
+        token.shape_,
+        token.is_alpha,
+        token.is_stop
+    )

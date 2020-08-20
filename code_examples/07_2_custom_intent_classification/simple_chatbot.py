@@ -37,7 +37,7 @@ class Chatbot(object):
         elif intent == "goodbye":
             return "It was nice to talk with you, have a nice day"
         elif intent == "list_task":
-            return "Al tasks: \n{}".format(
+            return "All tasks: \n{}".format(
                 "{}".format(
                     "\n".join(
                         [

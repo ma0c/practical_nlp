@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Slides } from "./slides";
 
 const theme = {
-    colors: {
+  colors: {
     primary: 'black',
     secondary: 'black',
     tertiary: 'white',

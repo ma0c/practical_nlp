@@ -19,10 +19,11 @@
 - todo
 - tasks
 - show
+- all
 
 ## intent:show_task
 - task [1](task_id)
-- show: [1](task_id),[2](task_id),[3](task_id)
+- show: [1](task_id), [2](task_id), [3](task_id)
 
 ## intent:create_task
 - create: [attend presentation](task)
@@ -35,3 +36,4 @@
 - remove [1](task_id)
 - get rid of [0](task_id), [1](task_id), [2](task_id)
 - take away [1](task_id)
+- done [0](task_id)

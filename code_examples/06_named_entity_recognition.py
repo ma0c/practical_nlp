@@ -6,4 +6,9 @@ phrase = "I love Ice Cream. I also like steak"
 document = nlp(phrase)
 
 for entity in document.ents:
-    print(entity.text, entity.start_char, entity.end_char, entity.label_)
+    print(
+        entity.text,
+        entity.start_char,
+        entity.end_char,
+        entity.label_
+    )
