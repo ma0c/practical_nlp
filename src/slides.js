@@ -16,7 +16,8 @@ import {
     CodePane,
     Stepper
 } from "spectacle";
-
+import { InlineMath, BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 import qr from "../static/img/qr.png"
 
 
@@ -138,6 +139,23 @@ export const Slides = (props) => (
                         </Link>
             </FlexBox>
         </Slide>
+
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    Artificial Communication
+                </Heading>
+
+                <Appear elementNum={0}><Text margin="0px">1952 Audrey por IBM (Digit Recognition)</Text></Appear>
+                <Appear elementNum={1}><Text margin="0px">1960 Shoebox por IBM (Digits and operands)</Text></Appear>
+                <Appear elementNum={2}><Text margin="0px">1972 Dynamic Time Warping (Sakoe, Chiba y Vintsyuk)</Text></Appear>
+                <Appear elementNum={3}><Text margin="0px">1980 Hidden Markov Models</Text></Appear>
+                <Appear elementNum={4}><Text margin="0px">1990 Gaussian Mixtures Models</Text></Appear>
+                <Appear elementNum={5}><Text margin="0px">2000 Robust Speech Recognition</Text></Appear>
+                <Appear elementNum={6}><Text margin="0px">2012 Context Dependent Deep Neuran Netwowks Hidden Markov Models</Text></Appear>
+                <Appear elementNum={7}><Text margin="0px">2014 Deep Speech (Recurrent Deep Neural Networks)</Text></Appear>
+            </FlexBox>
+        </Slide>
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
@@ -228,7 +246,6 @@ export const Slides = (props) => (
                 </Link>
             </FlexBox>
         </Slide>
-
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
@@ -246,6 +263,16 @@ export const Slides = (props) => (
                 <Appear elementNum={8}><Text margin="0px">[Verb Phrase] -> [Verb] [Noun Phrase] [Adverb]</Text></Appear>
             </FlexBox>
         </Slide>
+        {/*<Slide>*/}
+        {/*    <Heading size="2">*/}
+        {/*        Language Model*/}
+        {/*    </Heading>*/}
+        {/*    <Appear>*/}
+        {/*        <Text>*/}
+        {/*            <BlockMath math="P(w_1^n) = \prod_{k=1}^{n}{P(w_k|w_1^{k-1})}"/>*/}
+        {/*        </Text>*/}
+        {/*    </Appear>*/}
+        {/*</Slide>*/}
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
