@@ -39777,11 +39777,97 @@ const POSTags = `| Number | Tag  | Description                              | Nu
 | 18.    | PRP  | Personal pronoun                         | 36.    | WRB  | Wh-adverb                             |`;
 const phrase = "I love Ice Cream. I also like steak";
 const tokenization = "|I| |love| |Ice Cream|  |I| |also| |like| |steak|";
+const pythonTokenization = `from nltk.tokenize import word_tokenize
+
+phrase = "I love Ice Cream. I also like steak"
+tokenized_phrase = word_tokenize(phrase)
+
+print(tokenized_phrase)
+
+>>> ['I', 'love', 'Ice', 'Cream', '.', 'I', 'also', 'like', 'steak']
+`;
+const stemmingVsLemmatization = `from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+
+phrase = "He ran and ate at the same time"
+tokenized_phrase = word_tokenize(phrase)
+
+stemmer = PorterStemmer()
+stemmed_words = [stemmer.stem(word) for word in tokenized_phrase]
+print(stemmed_words)
+
+lemmatizer = WordNetLemmatizer()
+stemmed_words = [lemmatizer.lemmatize(word, "v") for word in tokenized_phrase]
+print(stemmed_words)
+
+>>> ['He', 'ran', 'and', 'ate', 'at', 'the', 'same', 'time']
+>>> ['He', 'run', 'and', 'eat', 'at', 'the', 'same', 'time']
+`;
 const POSTTagging = `
 PRP   VBP      NNP      PRP    RB    VBP    NNP
  |     |        |        |     |      |      |
 |I| |love| |Ice Cream|  |I| |also| |like| |steak|
 `;
+const porterStemmerRules = `
+Step 1a
+    SSES -> SS                         caresses  ->  caress
+    IES  -> I                          ponies    ->  poni
+                                       ties      ->  ti
+    SS   -> SS                         caress    ->  caress
+    S    ->                            cats      ->  cat
+Step 1b
+    (m>0) EED -> EE                    feed      ->  feed
+                                       agreed    ->  agree
+    (*v*) ED  ->                       plastered ->  plaster
+                                       bled      ->  bled
+    (*v*) ING ->                       motoring  ->  motor
+                                       sing      ->  sing
+    ...
+`;
+const spacyAnalysis = `import en_core_web_sm
+
+nlp = en_core_web_sm.load()
+phrase = "I love Ice Cream. I also like steak"
+document = nlp(phrase)
+
+for token in document:
+    print(
+        token.text, 
+        token.lemma_, 
+        token.pos_, 
+        token.tag_, 
+        token.dep_,
+        token.shape_, 
+        token.is_alpha, 
+        token.is_stop
+    )
+`;
+const spacyResponse = `I -PRON- PRON PRP nsubj X True True
+love love VERB VBP ROOT xxxx True False
+Ice Ice PROPN NNP compound Xxx True False
+Cream Cream PROPN NNP dobj Xxxxx True False
+. . PUNCT . punct . False False
+I -PRON- PRON PRP nsubj X True True
+also also ADV RB advmod xxxx True True
+like like VERB VBP ROOT xxxx True False
+steak steak PROPN NNP dobj xxxx True False
+`;
+const spacyNER = `import en_core_web_sm
+
+nlp = en_core_web_sm.load()
+phrase = "I love Ice Cream. I also like steak"
+document = nlp(phrase)
+
+for entity in document.ents:
+    print(
+        entity.text,
+        entity.start_char,
+        entity.end_char,
+        entity.label_
+    )
+`;
+const spacyNERResponse = `Ice Cream 7 16 ORG`;
 const Slides = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Deck"], _extends({
   transition: ['zoom', 'slide'],
   transitionDuration: 800
@@ -40096,6 +40182,15 @@ const Slides = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.
   alignItems: "center"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
   size: "2"
+}, "Separating words"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["CodePane"], {
+  lang: "python",
+  margin: "20px auto"
+}, pythonTokenization))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
 }, "Categorizing words"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
   elementNum: 0
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("pre", {
@@ -40120,6 +40215,133 @@ const Slides = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.
   alignItems: "center"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
   size: "2"
+}, "Porter Stemmer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("pre", {
+  style: {
+    fontSize: "1.5rem"
+  }
+}, porterStemmerRules), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  href: "https://tartarus.org/martin/PorterStemmer/def.txt"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  color: "secondary"
+}, "https://tartarus.org/martin/PorterStemmer/def.txt"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Stemming vs Lemmatization"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["CodePane"], {
+  lang: "python",
+  margin: "20px auto"
+}, stemmingVsLemmatization))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "A modern approach"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["CodePane"], {
+  lang: "python",
+  margin: "20px auto"
+}, spacyAnalysis), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["CodePane"], {
+  lang: "python",
+  margin: "20px auto"
+}, spacyResponse)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Language Model"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_katex__WEBPACK_IMPORTED_MODULE_2__["BlockMath"], {
+  math: "P(w_1^n) = \\prod_{k=1}^{n}{P(w_k|w_1^{k-1})}"
+})))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Ambiguity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "What is silver?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "She bagged two silver medals. (Noun)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 1
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "She made a silver speech. (Adjective)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 2
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "His worries had silvered his hair. (Verb)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 3
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "Lexical ambiguity")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Lexical Semantic Ambiguity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "What is a tank?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "The tank was full of water. (Noun)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 1
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "I saw a military tank. (Noun)")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Scope Ambiguity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "Every man loves a woman"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "For every man there is a woman")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 1
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, " There is one particular woman who is loved by every man")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Scope Ambiguity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "The man saw the girl with the telescope"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "The man saw the girl using a telescope")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 1
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "The man saw a girl carrying a telescope")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Semantic Ambiguity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], null, "The car hit the ball while it was moving."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "The car was moving")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 1
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  margin: "0px"
+}, "The ball was moving")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 2
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  href: "http://www.ijircce.com/upload/2014/sacaim/59_Paper%2027.pdf"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  color: "secondary"
+}, "http://www.ijircce.com/upload/2014/sacaim/59_Paper%2027.pdf"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
 }, "Who is who?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
   elementNum: 0,
   justifyContent: "center"
@@ -40129,11 +40351,40 @@ const Slides = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.
   justifyContent: "center"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Image"], {
   src: "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif"
+}))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "A better way to represent words"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0,
+  justifyContent: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  src: "https://miro.medium.com/max/624/1*wwDrMqTX_eW7Vr9UxFPAOQ.png"
 }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-  href: "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif"
+  href: "https://medium.com/analytics-vidhya/maths-behind-word2vec-explained-38d74f32726b"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
   color: "secondary"
-}, "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+}, "https://medium.com/analytics-vidhya/maths-behind-word2vec-explained-38d74f32726b")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "A modern approach"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["CodePane"], {
+  lang: "python",
+  margin: "20px auto"
+}, spacyNER), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["CodePane"], {
+  lang: "python",
+  margin: "20px auto"
+}, spacyNERResponse)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
   height: "100%",
   flexDirection: "column",
   alignItems: "center"
@@ -40154,13 +40405,7 @@ const Slides = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.
   alignItems: "center"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
   size: "2"
-}, "Let's create an assistant!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
-  height: "100%",
-  flexDirection: "column",
-  alignItems: "center"
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
-  size: "2"
-}, "Things get complicated"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+}, "Understanding sequences of words"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
   elementNum: 0,
   justifyContent: "center"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
@@ -40168,7 +40413,44 @@ const Slides = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.
   alignItems: "center",
   justifyContent: "center"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  src: "https://miro.medium.com/max/698/1*Yhu1P012irDHOBLUB98FEw.png"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  href: "https://towardsdatascience.com/word-embeddings-for-sentence-classification-c8cb664c5029"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  color: "secondary"
+}, "https://towardsdatascience.com/word-embeddings-for-sentence-classification-c8cb664c5029")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Let's create an assistant!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Things get complicated"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Image"], {
   src: "https://media.giphy.com/media/UedEkAAyEhMLC/giphy.gif"
+})))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Slide"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  height: "100%",
+  flexDirection: "column",
+  alignItems: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Heading"], {
+  size: "2"
+}, "Run away before questions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Appear"], {
+  elementNum: 0,
+  justifyContent: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["FlexBox"], {
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(spectacle__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  src: "https://media.giphy.com/media/TJaNCdTf06YvwRPCge/giphy.gif"
 }))))));
 
 /***/ }),
