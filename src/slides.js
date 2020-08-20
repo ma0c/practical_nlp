@@ -316,11 +316,28 @@ export const Slides = (props) => (
                 </Appear>
             </FlexBox>
         </Slide>
+
+        <Slide>
+
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    Let's create an assistant!
+                </Heading>
+            </FlexBox>
+        </Slide>
         <Slide>
             <FlexBox height="100%" flexDirection="column" alignItems="center">
                 <Heading size="2" >
-                    Let's create an assistant?
+                    Things get complicated
                 </Heading>
+                <Appear elementNum={0} justifyContent="center">
+                    <FlexBox flexDirection="column" alignItems="center" justifyContent="center">
+                        <Image src="https://media.giphy.com/media/UedEkAAyEhMLC/giphy.gif"/>
+                        {/*<Link href="https://media.giphy.com/media/3o7ZetIsjtbkgNE1I4/giphy.gif">*/}
+                        {/*    <Text color="secondary">https://media.giphy.com/media/3o7ZetIsjtbkgNE1I4/giphy.gif</Text>*/}
+                        {/*</Link>*/}
+                    </FlexBox>
+                </Appear>
             </FlexBox>
         </Slide>
     </Deck>
